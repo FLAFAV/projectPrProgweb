@@ -1,0 +1,53 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    background-color: #D5CEA3;
+
+}
+.kalender {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #E5E5CB;
+    font-weight: bolder;
+    border-radius: 5%;
+    padding: 10px 30px;
+    height: 70vh;
+}
+.judul, .footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3C2A21;
+    font-size: 48px;
+    font-weight: bolder;
+    color: #D5CEA3;
+    height: 15vh;
+}
+td {
+    text-align: center;
+    height: 10vh;
+    width: 10vw;
+    opacity: .75;
+}
+
+.bulan-tahun {
+    font-size: 24px;
+
+}
+
+.sisa {
+    opacity: .5;
+}
+td:hover{
+    background-color: #D5CEA3;
+    box-shadow: 2px 2px grey;
+}
+
+.now {
+    border-radius: 100%;
+    background-color: #D5CEA3;
+
+}
