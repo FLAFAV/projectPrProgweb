@@ -5,7 +5,7 @@
 .container {
     display: flex;
     justify-content: center;
-    background-color: #D5CEA3;
+    background-color: #8f8f8f;
 
 }
 .kalender {
@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #3C2A21;
+    background-color: #23242a;
     font-size: 48px;
     font-weight: bolder;
     color: #D5CEA3;
@@ -42,12 +42,12 @@ td {
     opacity: .5;
 }
 td:hover{
-    background-color: #D5CEA3;
+    background-color: #8f8f8f;
     box-shadow: 2px 2px grey;
 }
 
 .now {
     border-radius: 100%;
-    background-color: #D5CEA3;
+    background-color: #8f8f8f;
 
 }
