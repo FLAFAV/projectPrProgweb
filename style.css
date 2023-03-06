@@ -8,15 +8,16 @@
     background-color: #8f8f8f;
 
 }
-.kalender {
+.kalender, .kegiatan {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: #E5E5CB;
     font-weight: bolder;
     border-radius: 5%;
     padding: 10px 30px;
     height: 70vh;
+    width: 30vw;
 }
-.judul, .footer {
+.judul, footer {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,13 +27,16 @@
     color: #D5CEA3;
     height: 15vh;
 }
-td {
+.kalender td, .kegiatan td {
     text-align: center;
     height: 10vh;
     width: 10vw;
     opacity: .75;
 }
-
+.kegiatan td {
+    text-align: left;
+    font-weight: normal;
+}
 .bulan-tahun {
     font-size: 24px;
 
@@ -41,11 +45,13 @@ td {
 .sisa {
     opacity: .5;
 }
-td:hover{
+.kalender td:hover{
     background-color: #8f8f8f;
     box-shadow: 2px 2px grey;
 }
-
+.kegiatan td:nth-child(even){
+    opacity: .3;
+}
 .now {
     border-radius: 100%;
     background-color: #8f8f8f;
