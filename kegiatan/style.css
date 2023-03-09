@@ -1,14 +1,14 @@
 body{
-    background-image: url("./gambar/img.gif");
+    background-image: url("../gambar/img.gif");
     background-size: cover;
+    margin:0;
     padding: 0;
-    margin: 0;
 }
 .container {
     display: flex;
     justify-content: space-evenly;
 }
-.kalender{
+.kegiatan {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: #f5e3ec;
     font-weight: bolder;
@@ -18,7 +18,8 @@ body{
     width: 30vw;
     border-spacing: 0px;
 }
-.kalender .hari-hari th{
+
+.kegiatan .hari-hari th{
     background-color: #e090df;
 }
 header div {
@@ -33,7 +34,7 @@ header div {
     margin-bottom: 5vh;
 }
 
-.kalender td{
+.kegiatan td {
     text-align: center;
     height: 8vh;
     width: 10vw;
@@ -47,59 +48,20 @@ header div {
     font-size: 24px;
 }
 
-
-
-.kalender .sisa {
+.kegiatan td:nth-child(even){
     opacity: .5;
+    text-align: center;
 }
 
-
-a.penting:link, a.penting:visited {
-    color:red;
-    text-decoration:overline;
-}
-
-a.sedang:link, a.sedang:visited {
-    color:blue;
-    text-decoration:overline;
-}
-
-a.kurang:link, a.kurang:visited {
-    color:green;
-    text-decoration: overline;
-}
-.kalender .bulan-tahun {
-    font-size: 24px;
-}
-
-.kalender .sisa {
-    opacity: .2;
+.kegiatan .go-back {  
+    text-align: center;
 }
 .now {
     border-radius: 100%;
-    background-color: #FBBEDE;
-
-}
-.ngisor-dewe {
-    display: flex;
-    justify-content: space-evenly;
-}
-.level-1, .level-2, .level-3{
-    height: 10px;
-    width: 10px;
-    background-color: green;
-}
-.level-2 {
-    background-color: blue;
-}
-.level-3 {
-    background-color: red;
+    background-color: #e090df; 
+    opacity: 0;
 }
 
-.ngisor-dewe span {
-    font-size: 8.5pt;
-    font-family: "Calibri";
-}
 footer {
     display: flex;
     align-items: center;
@@ -117,3 +79,5 @@ footer span {
     font-size: 9pt;
     font-family: 'Times New Roman', Times, serif;
 }
+
+
