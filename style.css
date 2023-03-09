@@ -1,3 +1,9 @@
+body{
+    background-image: url("img.gif");
+    background-size: cover;
+
+
+}
 * {
     padding: 0;
     margin: 0;
@@ -5,12 +11,12 @@
 .container {
     display: flex;
     justify-content: space-evenly;
-    background-color: #8f8f8f;
+   
 
 }
 .kalender, .kegiatan {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: #E5E5CB;
+    background-color: #FBBEDE;
     font-weight: bolder;
     border-radius: 5%;
     padding: 10px 30px;
@@ -20,9 +26,9 @@
 }
 
 .kegiatan .hari-hari th, .kalender .hari-hari th{
-    background-color: #D5CEA3;
+    background-color: #e090df;
 }
-.judul, footer {
+.judul{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,8 +36,24 @@
     font-size: 48px;
     font-weight: bolder;
     color: #D5CEA3;
-    height: 15vh;
+    height: 8vh;
+    opacity: 0.5;
+    margin-bottom: 50px;
 }
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #23242a;
+    font-size: 48px;
+    font-weight: bolder;
+    color: #D5CEA3;
+    height: 8vh;
+    opacity: 0.5;
+    margin-top: 50px;
+}
+
 .kalender td, .kegiatan td {
     text-align: center;
     height: 10vh;
@@ -62,6 +84,7 @@
 }
 .now {
     border-radius: 100%;
-    background-color: #8f8f8f;
+    background-color: #e090df; 
+    opacity: 0;
 
 }
