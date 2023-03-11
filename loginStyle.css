@@ -13,8 +13,6 @@ body{
     align-items: center;
     min-height: 100vh;
     background: #23242a;
-    /* #271208 */
-    /*buat lamp:  #EDC9AF F5F5DC */
 }
 .box{
     position: relative;
@@ -22,6 +20,53 @@ body{
     height: 420px;
     background: #1c1c1c;
     border-radius: 8px;
+    overflow: hidden;
+}
+.box::after
+{
+    content: '';
+    position: absolute;
+    width: 380px;
+    height: 420px;
+    top: -50%;
+    left: -50%;
+    background: linear-gradient(0deg, transparent, 
+    transparent, #ae41ba, #ae41ba, #ae41ba);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -3s;
+}
+.box::before
+{
+    content: '';
+    position: absolute;
+    width: 380px;
+    height: 420px;
+    top: -50%;
+    left: -50%;
+    background: linear-gradient(0deg, transparent, 
+    transparent, #21dede, #21dede, #21dede);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+}
+.borderLine
+{
+    position: absolute;
+    top: 0;
+    inset: 0;
+}
+@keyframes animate
+{
+    0%
+    {
+        transform: rotate(0deg);
+    }
+    100%
+    {
+        transform: rotate(360deg);
+    }
 }
 .box form{
     position: absolute;
@@ -125,3 +170,10 @@ body{
     width: 100px;
     margin-top: 10px;
 }
+.box form input[type="submit"]
+{
+
+}
+
+/* lamp #21dede, #ae41ba */
+
