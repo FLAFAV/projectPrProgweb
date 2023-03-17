@@ -6,7 +6,7 @@ body{
 }
 .container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 .kalender{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -14,12 +14,13 @@ body{
     font-weight: bolder;
     border-radius: 5%;
     padding: 10px 30px;
-    height: 70vh;
     width: 30vw;
     border-spacing: 0px;
 }
 .kalender .hari-hari th{
     background-color: #e090df;
+    min-width: 3.5vw;
+    
 }
 header div {
     display: flex;
@@ -36,8 +37,8 @@ header div {
 .kalender td{
     text-align: center;
     height: 8vh;
-    width: 10vw;
     opacity: .75;
+    min-width: 3.5vw;
 }
 .kegiatan td {
     text-align: left;
@@ -47,16 +48,8 @@ header div {
     font-size: 24px;
 }
 
-
-
 .kalender .sisa {
     opacity: .5;
-}
-
-
-a.penting:link, a.penting:visited {
-    color:red;
-    text-decoration:overline;
 }
 
 a.sedang:link, a.sedang:visited {
@@ -64,10 +57,6 @@ a.sedang:link, a.sedang:visited {
     text-decoration:overline;
 }
 
-a.kurang:link, a.kurang:visited {
-    color:green;
-    text-decoration: overline;
-}
 .kalender .bulan-tahun {
     font-size: 24px;
 }
@@ -79,26 +68,6 @@ a.kurang:link, a.kurang:visited {
     border-radius: 100%;
     background-color: #FBBEDE;
 
-}
-.ngisor-dewe {
-    display: flex;
-    justify-content: space-evenly;
-}
-.level-1, .level-2, .level-3{
-    height: 10px;
-    width: 10px;
-    background-color: green;
-}
-.level-2 {
-    background-color: blue;
-}
-.level-3 {
-    background-color: red;
-}
-
-.ngisor-dewe span {
-    font-size: 8.5pt;
-    font-family: "Calibri";
 }
 footer {
     display: flex;
