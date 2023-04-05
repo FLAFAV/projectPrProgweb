@@ -18,6 +18,10 @@ body{
     border-spacing: 0px;
 }
 
+.kegiatan:nth-child(2) {
+    margin-left: 20px;
+}
+
 .kegiatan .hari-hari th{
     background-color: #e090df;
 }

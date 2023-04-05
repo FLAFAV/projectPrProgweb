@@ -108,23 +108,26 @@ footer span {
     font-family: 'Times New Roman', Times, serif;
     text-decoration: none;
     display: block;
+    font-weight:900;
 }
 
 
 a.penting:link, a.penting:visited {
     color:white;
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.2);
     border-color: red;
+    color: red;
 }
 
 a.sedang:link, a.sedang:visited {
-    color:white;
-    background-color: rgb(24, 163, 228);
-    border-color: rgb(24, 163, 228);
+    color:blue;
+    background-color: rgba(24, 163, 228, 0.2);
+    
 }
 
 a.kurang:link, a.kurang:visited {
     color:white;
-    background-color: rgb(33, 211, 33);
-    border-color: rgb(33, 211, 33);
+    background-color: rgba(33, 211, 33, 0.2);
+    color: green;
+    border-color: rgba(33, 211, 33);
 }
