@@ -70,12 +70,12 @@ footer {
     
 }
 .ukdw {
-    height: 3vh;
+    height: 45%;
     width: auto;
 }
 footer span {
     color: white;
-    font-size: 9pt;
+    font-size: 120%;
     font-family: 'Times New Roman', Times, serif;
 }
 
@@ -93,32 +93,38 @@ footer span {
     background-color: green;
 }
 .level-2 {
-    background-color: blue;
+    background-color: rgb(24, 163, 228);
 }
 .level-3 {
     background-color: red;
 }
 
+.kegiatan td {
+    display: flexbox;
+}
 .keg {
-    padding-left: 20px;
-    border-left: 10px solid red; 
+    min-width: 100%;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
+    display: block;
 }
 
 
 a.penting:link, a.penting:visited {
-    color:red;
-    /* text-decoration:overline; */
+    color:white;
+    background-color: red;
     border-color: red;
 }
 
 a.sedang:link, a.sedang:visited {
-    color:blue;
-    /* text-decoration:overline; */
-    border-color: blue;
+    color:white;
+    background-color: rgb(24, 163, 228);
+    border-color: rgb(24, 163, 228);
 }
 
 a.kurang:link, a.kurang:visited {
-    color:green;
-    border-color: green;
-    /* text-decoration: overline; */
+    color:white;
+    background-color: rgb(33, 211, 33);
+    border-color: rgb(33, 211, 33);
 }

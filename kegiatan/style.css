@@ -6,7 +6,7 @@ body{
 }
 .container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 .kegiatan {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -33,15 +33,15 @@ header div {
     margin-bottom: 5vh;
 }
 
-.kegiatan td {
-    text-align: center;
-    height: 8vh;
-    width: 10vw;
-    opacity: .75;
+.simbol-penting {
+    width: 10%;
+    height: auto;
 }
 .kegiatan td {
     text-align: left;
-    font-weight: normal;
+    height: 8vh;
+    width: 10vw;
+    opacity: .75;
 }
 .kegiatan .tgl-bulan-tahun {
     font-size: 24px;
@@ -55,6 +55,11 @@ header div {
 .kegiatan .go-back:nth-child(1), .kegiatan .go-back:nth-child(2){  
     text-align: center;
     opacity: .75;
+}
+.gambar-kakom {
+    height:auto;
+    width: 100%;
+    
 }
 .now {
     border-radius: 100%;
@@ -71,12 +76,12 @@ footer {
     
 }
 .ukdw {
-    height: 3vh;
+    height: 45%;
     width: auto;
 }
 footer span {
     color: white;
-    font-size: 9pt;
+    font-size: 120%;
     font-family: 'Times New Roman', Times, serif;
 }
 
