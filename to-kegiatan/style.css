@@ -37,7 +37,7 @@ header div {
     text-align: center;
     height: 8vh;
     width: 10vw;
-    opacity: .75;
+    /* opacity: .75; */
 }
 .kegiatan td {
     text-align: left;

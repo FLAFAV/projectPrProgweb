@@ -34,10 +34,14 @@ header div {
     margin-bottom: 5vh;
 }
 
+.kalender:nth-child(2) {
+    margin-left: 20px;
+}
+
 .kalender td{
     text-align: center;
     height: 8vh;
-    opacity: .75;
+    /* opacity: .75; */
     min-width: 3.5vw;
 }
 .kegiatan td {
@@ -52,9 +56,8 @@ header div {
     opacity: .5;
 }
 
-a.sedang:link, a.sedang:visited {
-    color:blue;
-    text-decoration:overline;
+.ada-tugas {
+    text-decoration: overline;
 }
 
 .kalender .bulan-tahun {
@@ -69,6 +72,27 @@ a.sedang:link, a.sedang:visited {
     background-color: #FBBEDE;
 
 }
+
+.ngisor-dewe {
+    display: flex;
+    justify-content: space-evenly;
+}
+.ngisor-dewe span {
+    font-size: 8.5pt;
+    font-family: "Calibri";
+}
+.level-1, .level-2, .level-3{
+    height: 10px;
+    width: 10px;
+    background-color: green;
+}
+.level-2 {
+    background-color: rgb(24, 163, 228);
+}
+.level-3 {
+    background-color: red;
+}
+
 footer {
     display: flex;
     align-items: center;
@@ -85,4 +109,76 @@ footer span {
     color: white;
     font-size: 120%;
     font-family: 'Times New Roman', Times, serif;
+}
+
+.kegiatan {
+    text-align: center;
+    height: auto;
+}
+.dropdown-container {
+    position: absolute;
+    display:none;
+    text-align: left;
+    transition: all 0.3s ease;
+
+
+}
+.dropdown {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: red;
+    display: none;
+}
+.container-ada-tugas:hover .dropdown-container{
+    height: auto;
+    width: auto;
+    padding: 10px;
+    display: block;
+    background-color:#f8d5e7;
+    border-radius: 10%;
+
+}
+
+
+
+.dropdown-container:hover {
+    height: auto;
+}
+.dropdown-container:hover  .dropdown {
+    display: inline;
+    height: auto;
+}
+
+.dropdown-container:hover .kegiatan {
+    display: none;
+}
+
+.keg {
+    min-width: 100%;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
+    /* display: block; */
+    font-weight:900;
+}
+
+
+a.penting:link, a.penting:visited {
+    color:white;
+    background-color: rgb(243, 175, 175);
+    min-width: 200px;
+    border-color: red;
+    color: red;
+}
+
+a.sedang:link, a.sedang:visited {
+    color:blue;
+    background-color: rgb(185, 220, 236);
+    
+}
+
+a.kurang:link, a.kurang:visited {
+    color:white;
+    background-color: rgb(152, 235, 152);
+    color: green;
+    border-color: rgba(33, 211, 33);
 }
