@@ -20,8 +20,14 @@
         <div class ="container">
             <table class ="kalender">
                 <tr>
-                    <th colspan="7" class = "bulan-tahun">
-                        <h3>Februari 2023</h3>
+                    <th >
+                        <input type="button" value="&leftarrow;" onclick="changeMonth(-1)">
+                    </th>
+                    <th colspan="5" class = "bulan-tahun">
+                        <h3><span id="bulan"></span > <span id="tahun"></span></h3>
+                    </th>
+                    <th>
+                        <input type="button" value="&rightarrow;" onclick="changeMonth(1)">
                     </th>
                 </tr>
                 <tr class ="hari-hari">
@@ -33,7 +39,7 @@
                     <th>Sat</th>
                     <th>Sun</th>
                 </tr>
-                <tr>
+                <tr class="hari">
                     <td class="sisa">30<br>
                     </td>
                     <td class="sisa">31</td>
@@ -64,7 +70,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
+                <tr class="hari">
                     <td>6</td>
                     <td>
                         7
@@ -94,7 +100,7 @@
                     <td>11</td>
                     <td>12</td>
                 </tr>
-                <tr>
+                <tr class="hari">
                     <td>13</td>
                     <td>14</td>
                     <td>15<br>
@@ -135,7 +141,7 @@
                     </td>
                     <td>19</td>
                 </tr>
-                <tr>
+                <tr class="hari">
                     <td>
                         20
                     </td>
@@ -148,11 +154,11 @@
                         23
                     </td>
                     <td>24</td>
-                    <td class = "now">25</td>
+                    <td>25</td>
                     <td>
                         26
                     </td>
-                <tr>
+                <tr class="hari">
                     <td>27</td>
                     <td>28</td>
                     <td class="sisa">1</td>
@@ -161,7 +167,16 @@
                     <td class="sisa">4</td>
                     <td class="sisa">5</td>
                 </tr>                
-                <tr>
+                <tr class="hari">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <!-- <tr class="hari">
                     <td colspan="7">
                         <div class="ngisor-dewe">
                             <div class="level-1"></div>
@@ -172,7 +187,8 @@
                             <span class="penting">Penting</span>
                         </div>
                     </td>
-                </tr>
+                </tr> -->
+
             </table>
 
         </div>
@@ -182,5 +198,8 @@
         <img class="ukdw" src="./gambar/33.UKDW.png" alt="">
         <span>&nbsp &#169; Dipundamel dening Bobi, Gian, Yandi :v</span>
     </footer>
+    <script src="Main.js">
+
+    </script>
 </body>
 </html>

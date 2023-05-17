@@ -182,3 +182,8 @@ a.kurang:link, a.kurang:visited {
     color: green;
     border-color: rgba(33, 211, 33);
 }
+
+#next, #prev {
+    cursor: pointer;
+}
+

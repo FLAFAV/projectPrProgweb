@@ -1,0 +1,3 @@
+Gian Pradipta Gunawan 71210689 ----- implementasi CSS dan HTML (menu utama dan debugging)
+Stefanus Yandi Prakosa 71210683 ----- Desain web dan CSS (penasihat seni background, color pallete, dll)
+Farrel Ballard Thomas 71210679 ----- implementasi HTML (Menu kegiatan)
