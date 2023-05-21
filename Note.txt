@@ -1,3 +1,47 @@
 Gian Pradipta Gunawan 71210689 ----- implementasi CSS dan HTML (menu utama dan debugging)
 Stefanus Yandi Prakosa 71210683 ----- Desain web dan CSS (penasihat seni background, color pallete, dll)
 Farrel Ballard Thomas 71210679 ----- implementasi HTML (Menu kegiatan)
+
+
+function kasihOverLine(kegiatan) {
+    for (i = 0 ; i < kegiatan.length ; i++) {
+        // tgl = kegiatan[i][0]['tgl'];
+        // console.log(tgl);
+        // tanggal = document.getElementById(tgl);
+        // let path = "../../projectPrProgweb/kegiatan/rplbo2.php?id=" + kegiatan[i][0]['id'];
+        let now = new Date();
+        for (j = 0 ; j < kegiatan[i].length ; j++) {
+            tgl = kegiatan[i][j]['tgl'];
+            console.log(tgl);
+            tanggal = document.getElementById(tgl);
+            let path = "../../projectPrProgweb/kegiatan/rplbo2.php?id=" + kegiatan[i][j]['id'];
+            tanggal.innerHTML = "<span style='display:none;' class='hidden-id' id= " + kegiatan[i][j]['id']+ "> Gian </span>" +
+            "<span class='ada-tugas'>" + tanggal.id +"</span>"+
+            "<div class='dropdown-container'><span class = 'kegiatan'>Kegiatan</span>"+ 
+            "<a class='dropdown keg " + kegiatan[i][j]['level'] +"'" +" href= " +path+ "  >" + kegiatan[i][j]['nama']+"</a></div>";
+            if (!isNaN(Number(tanggal.innerHTML))) {
+                
+
+                let className = "container-ada-tugas";
+                if (tanggal.id == now.getDate() && tahunDiKalender == now.getFullYear() && bulanDiKalender == (now.getMonth() +1)){
+                    className += " now";
+                    
+                }
+                tanggal.className = className;
+
+                
+                
+            }
+            
+            else  {
+                
+                tanggal.innerHTML = tanggal.innerHTML.slice(0, -6)+ "<br>"+
+                "<a class='dropdown keg " + kegiatan[i][j]['level'] +"'" +" href= " +path+ "  >" + kegiatan[i][0]['nama']+"</a></div>";
+                
+            }
+        }
+    }
+
+}
+
+'changeMonth(-1, <?php echo getKegiatan(2023, 5); ?>)'

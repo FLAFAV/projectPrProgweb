@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <?php 
     require_once "Connection.php";
+
+    function getBulanTahunNow($i, $choice) {
+        $bulan = $GLOBALS['bulan'];
+        $tahun = $GLOBALS['tahun'];
+        $bulan += $i;
+        if ($bulan == 13) {
+            $bulan = 1;
+            $tahun ++;
+        }
+        if ($bulan == 0) {
+            $bulan == 12;
+            $tahun --;
+        }
+        $GLOBALS['bulan'] = $bulan;
+        $GLOBALS['tahun'] = $tahun;
+        if ($choice == "b") {return $GLOBALS['bulan'];}
+        elseif ($choice == "y") {return $GLOBALS['tahun'] ;}
+
+    }
+
 ?>
 <html lang="en">
 <head>
@@ -14,6 +34,8 @@
 </head>
 <body>
     <!-- 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 -->
+    
+
     <header>
         <div>
             Kalender
@@ -23,18 +45,18 @@
         <div class ="container">
             <table class ="kalender">
                 <tr>
-                    <th >
-                        <input type="button" value="&leftarrow;" onclick="changeMonth(-1, <?php echo getKegiatan(5); ?>)">
+                    <th>
+                        <input type="button" value="&leftarrow;" id="prev">
                     </th>
                     <th colspan="5" class = "bulan-tahun">
                         <h3><span id="bulan"></span > <span id="tahun"></span></h3>
                     </th>
                     <th>
-                        <input type="button" value="&rightarrow;" onclick="changeMonth(1, <?php echo getKegiatan(5); ?>)">
+                        <input type="button" value="&rightarrow;" id="next">
                     </th>
                 </tr>
                 <tr class ="hari-hari">
-                    <th>Mon</th>
+                    <th onclick="a()">Mon</th>
                     <th>Tue</th>
                     <th>Wed</th>
                     <th>Thu</th>
@@ -85,7 +107,8 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td>
+                    </td>
                     <td></td>
                 </tr>
                 <tr class="hari">
@@ -113,15 +136,19 @@
             </table>
 
         </div>
-
     </main>
     <footer>
         <img class="ukdw" src="./gambar/33.UKDW.png" alt="">
         <span>&nbsp &#169; Dipundamel dening Bobi, Gian, Yandi :v</span>
     </footer>
-    <script src="public/Main.js"></script>
+    <script src="public/Main.js?v=<?php echo time()?>"></script>
+    <?php
+    ?>
     <script>
-        isiTanggal(date.getFullYear(), date.getMonth()+1, <?php echo getKegiatan(5); ?>);
+        isiTanggal(date.getFullYear(), date.getMonth()+1, <?php echo getKegiatan(date("Y"), date("m"));?>);
+        apalah = getBulan();
+        document.cookie = "bulan="+apalah;
     </script>
+
 </body>
 </html>

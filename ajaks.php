@@ -1,5 +1,6 @@
+
 <?php
-    setcookie("bulan", "halo");
+    
     $HOST = "localhost";
     $PASSWORD = "";
     $USER = "root";
@@ -55,4 +56,9 @@
     // SELECT bulan, tglMulai, tglSelesai FROM (select "2023-05-19" as bulan, tglMulai, tglSelesai from kegiatan) as g where bulan BETWEEN tglMulai and tglSelesai;
     //SELECT * FROM (select *,"2023-05-19" as bulan from kegiatan) as g where bulan BETWEEN tglMulai and tglSelesai;
 
+
+    $bulan = $_GET['bulan'];
+    $tahun = $_GET['tahun'];
+    echo getKegiatan($tahun, $bulan);
 ?>
+
