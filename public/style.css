@@ -137,7 +137,15 @@ footer span {
     border-radius: 10%;
 
 }
+.hariBiasa:hover .dropdown-container{
+    height: auto;
+    width: auto;
+    padding: 10px;
+    display: block;
+    background-color:#f8d5e7;
+    border-radius: 10%;
 
+}
 
 
 .dropdown-container:hover {

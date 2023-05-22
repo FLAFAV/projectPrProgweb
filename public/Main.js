@@ -40,12 +40,15 @@ function kasihOverLine(kegiatan) {
         for (j = 0 ; j < kegiatan[i].length ; j++) {
             tgl = kegiatan[i][j]['tgl'];
             let path = "../../projectPrProgweb/kegiatan/rplbo2.php?id=" + kegiatan[i][j]['id'] + "&tgl=" + kegiatan[i][j]['bulan'];
+            let path2 = "../../projectPrProgweb/kegiatan/insert.php?" + "tgl=" + kegiatan[i][j]['bulan'];
             tanggal = document.getElementById(tgl);
+            // tanggal.innerHTML = tanggal.id;
             // alert(tgl);
-            if (!isNaN(Number(tanggal.innerHTML))) {
+            if (!tanggal.innerHTML.includes("<span class=\"ada-tugas\">")) {
                 tanggal.innerHTML = 
                 "<span class='ada-tugas'>" + tanggal.id +"</span>"+
                 "<div class='dropdown-container'><span class = 'kegiatan'>Kegiatan</span>"+ 
+                "<a style='background-color:white;' class='dropdown keg ' " + " href=" +path2+"> Tambah+ </a><br>"+
                 "<a class='dropdown keg " + kegiatan[i][j]['level'] +"'" +" href= " +path+ "  >" + kegiatan[i][j]['nama']+"</a></div>";
                 
                 let className = "container-ada-tugas";
@@ -93,9 +96,14 @@ function isiTanggal(tahun,bulan, kegiatan=[]){
             }
                 
             if (hari <= jumlahHari){
-                HARI_HARI[i].children[j].innerHTML = hari;
+                var tanggal = tahun + "-" + bulan + "-" + hari;
+                // console.log(tanggal);
                 HARI_HARI[i].children[j].id = hari;
-                HARI_HARI[i].children[j].className = null;
+                HARI_HARI[i].children[j].innerHTML = hari +       
+                "<div class='dropdown-container'><span class = 'kegiatan'>Kegiatan</span>"+ 
+                "<a style='background-color:white;' class='dropdown keg '  href='../../projectPrProgweb/kegiatan/insert.php?tgl="+ tanggal+"'> Tambah+ </a><br>";
+                HARI_HARI[i].children[j].className = "hariBiasa";
+
                 
 
                 if (hari == today && now.getMonth() == bulan-1 && now.getFullYear() == tahun) 
