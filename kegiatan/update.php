@@ -7,8 +7,49 @@
     $conn = mysqli_connect($HOST, $USER, $PASSWORD, $DB);
     if (!$conn->get_connection_stats())
         die("Failed");
-    if (!isset($_GET['tgl'])) {
-        header("location:../index.php");
+    // if (!isset($_GET['tgl'])) {
+    //     header("location:../index.php");
+    // }
+    $id = $_GET['id'];
+    $NAMA_BULAN = array(
+        "01"=> "JANUARI",
+        "02"=>"FEBRUARI",
+        "03"=>"MARET",
+        "04"=> "APRIL",
+        "05"=> "MEI",
+        "06"=> "JUNI",
+        "07"=> "JULI",
+        "08"=> "AGUSTUS",
+        "09"=> "SEPTEMBER",
+        "10"=> "OKTOBER",
+        "11"=>"NOVEMBER",
+        "12"=>"DESEMBER"
+    );
+    $sql = "SELECT * FROM kegiatan WHERE id = " . $_GET['id'];
+    $tgl = explode("-", $_GET['tgl']);
+    $hari = $tgl[2];
+    $bulan = $tgl[1];
+    if (strlen($bulan) == 1) {
+        $bulan = "0" . $bulan;
+    }
+    $bulan = $NAMA_BULAN[$bulan];
+    $tahun = $tgl[0];
+    $old_nama;
+    $old_tglMulai = "$tahun-" . $tgl[1] . "-$hari";
+    $old_tglSelesai;
+    $old_level;
+    $old_durasi;
+    $old_lokasi;
+    $old_gambar;
+    $result = mysqli_query($conn, $sql);
+    while($row = mysqli_fetch_assoc($result)) {
+        $old_nama = $row['nama'];
+        $old_tglMulai = $row['tglMulai'];
+        $old_tglSelesai = $row['tglSelesai'];
+        $old_durasi = explode(" ", $row['durasi']);
+        $old_lokasi = $row['lokasi'];
+        $old_level = $row['level'];
+        $old_gambar = $row['gambar'];
     }
     $NAMA_BULAN = array(
         "01"=> "JANUARI",
@@ -24,7 +65,6 @@
         "11"=>"NOVEMBER",
         "12"=>"DESEMBER"
     );
-
     $tgl = explode("-", $_GET['tgl']);
     $hari = $tgl[2];
     $bulan = $tgl[1];
@@ -36,39 +76,53 @@
 
     if (isset($_POST['submit'])) {
         $nama = $_POST['nama'];
-        $tglMulai = "$tahun-" . $tgl[1] . "-$hari";
+        $tglMulai = $_POST['mulai'];
         $tglSelesai = $_POST['selesai'];
         $level = $_POST['level'];
-        $durasi = $_POST['durasiJam'] . " jam " . $_POST['durasiMenit'] . " menit";
+        $durasi = $_POST['durasiJam'] . " jam " . $_POST['durasiMenit']." menit";
         $lokasi = $_POST['lokasi'];
-        if (($_FILES['img']['name'] == ''))
+        $sql = "INSERT INTO `kegiatan` (`id`, `nama`, `tglMulai`, `tglSelesai`, `level`, `durasi`, `lokasi`, `gambar`) VALUES (NULL, '$nama', '$tglMulai', '$tglSelesai', '$level', '$durasi', '$lokasi', 'pp')";
+        if (($_FILES['img']['name'] == '')) 
         {
-            $sql = "INSERT INTO `kegiatan` (`id`, `nama`, `tglMulai`, `tglSelesai`, `level`, `durasi`, `lokasi`, `gambar`) VALUES (NULL, '$nama', '$tglMulai', '$tglSelesai', '$level', '$durasi', '$lokasi', 'pp')";
+            $sql = "UPDATE `kegiatan` SET nama = '$nama',
+            tglMulai='$tglMulai',
+            tglSelesai='$tglSelesai',
+            level='$level',
+            durasi='$durasi',
+            lokasi='$lokasi'
+            WHERE id =$id"
+            ;
             mysqli_query($conn, $sql);
-            header("location:../index.php");
+
         }
         else {
+            echo $_FILES['img']['name'];
             $extension = pathinfo($_FILES['img']['name'])['extension'];
             $uploadfile = "upload/" . time() . ".".$extension;
-            $filetype = explode('/', $_FILES['img']['type'])[0];
-            var_dump($_FILES['img']['type']);
-            if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile) && $filetype=='image') {
-
-                $sql = "INSERT INTO `kegiatan` (`id`, `nama`, `tglMulai`, `tglSelesai`, `level`, `durasi`, `lokasi`, `gambar`) VALUES (NULL, '$nama', '$tglMulai', '$tglSelesai', '$level', '$durasi', '$lokasi', '$uploadfile')";
+            if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile)) {
+                $sql = "UPDATE `kegiatan` SET nama = '$nama',
+                tglMulai='$tglMulai',
+                tglSelesai='$tglSelesai',
+                level='$level',
+                durasi='$durasi',
+                lokasi='$lokasi',
+                gambar='$uploadfile'
+                WHERE id =$id"
+                ;
                 mysqli_query($conn, $sql);
-                $sql = "SELECT * FROM `kegiatan` ORDER BY `kegiatan`.`id` DESC limit 1";
-                $result = mysqli_query($conn, $sql);
-                $id=mysqli_fetch_assoc($result)['id'];
-                header("location:../kegiatan/rplbo2.php?id=".$id."&tgl=".$_GET['tgl']);
+    
 
+                unlink($old_gambar);
             }
             else {
-                echo "<script>
-                    alert('GAGAL UPLOAD FILE')
-                </script>";
+                echo $_FILES['img']['name'];
+            //     echo "<script>
+            //     alert('GAGAL UPLOAD FILE')
+            // </script>";
             }
+
         }
-        
+        header("location:../kegiatan/rplbo2.php?id=".$_GET['id']."&tgl=".$_GET['tgl']);
     }
 ?>
 <!DOCTYPE html>
@@ -86,11 +140,10 @@
     .kegiatan td:nth-child(even){
     opacity: 1;
     text-align: center;
-}
-.wajib {
+    }
+    .wajib {
         color: red;
     }
-
 
 </style>
 <body>
@@ -109,8 +162,8 @@
                     </th>
                 </tr>
                 <tr class ="hari-hari">
-                    <th colspan="7">
-                        <input id="errorKegiatan" type="text" name="nama" placeholder="Masukkan nama kegiatan">
+                    <th colspan="7" >
+                        <input id = 'errorKegiatan' type="text" name="nama" placeholder="Masukkan nama kegiatan" value="<?php echo $old_nama ?>">
                         <span class='wajib'>*</span>
                     </th>
                 </tr>
@@ -120,11 +173,12 @@
                         &nbsp; Level Penting 
                     </td>
                     <td>
-                        <select name="level" id="">
+                        <select name="level" id="" value='<?php echo $old_level ?>'>
                             <option value="kurang">kurang</option>
                             <option value="sedang">sedang</option>
-                            <option value="sedang">penting</option>
+                            <option value="penting">penting</option>
                         </select>
+
                     </td>
                 </tr>
                 <tr>
@@ -132,30 +186,29 @@
                         <img class = "simbol-penting" src="..\gambar\kalender.png" alt="">
                         &nbsp; Mulai
                     </td>
-                    <td id = "mulai">
-                        <?php if (strlen($tgl[1]) == 1) {
-                            $tgl[1] = "0" . $tgl[1];
-                        }
-                        ?>
-                        <?php echo "$tahun-".$tgl[1] . "-$hari"?>
+                    <td>
+                        
+                        <input id = "mulai" type="date" name= "mulai" value='<?php echo $old_tglMulai ?>'>
+
+
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <img class = "simbol-penting" src="..\gambar\kalender.png" alt="">
                         &nbsp; Selesai
+
                     </td>
                     <td>
-                        <input id = "selesai" type="date" name="selesai">
+                        <input id="selesai" type="date" name="selesai" value='<?php echo $old_tglSelesai ?>'>
                         <script>
-                                document.getElementById("mulai").addEventListener('change', function () {
-                                document.getElementById("selesai").min = document.getElementById("mulai").innerHTML.trim();
-                                if (document.getElementById("selesai").value < document.getElementById("mulai").innerHTML.trim()){
-                                    document.getElementById("selesai").value = document.getElementById("mulai").innerHTML.trim();
+                            document.getElementById("mulai").addEventListener('change', function () {
+                                document.getElementById("selesai").min = document.getElementById("mulai").value;
+                                if (document.getElementById("selesai").value < document.getElementById("mulai").value){
+                                    document.getElementById("selesai").value = document.getElementById("mulai").value;
                                 }
                             })
-                            document.getElementById("selesai").min = document.getElementById("mulai").innerHTML.trim();
-                            document.getElementById("selesai").value = document.getElementById("mulai").innerHTML.trim();
+                            document.getElementById("selesai").min = document.getElementById("mulai").value;
                         </script>
                     </td>
                 </tr>
@@ -166,8 +219,11 @@
 
                     </td>
                     <td>
-                        <input style="max-width:30px;" min="0" type="number" name="durasiJam" value="0">&nbsp;Jam
-                        <input style="max-width:30px;" min = "0" type="number" name="durasiMenit" value="0" >&nbsp;Menit
+
+                        <input style="max-width:30px;" min="0" type="number" name="durasiJam" value='<?php echo $old_durasi[0]; ?>'>&nbsp;Jam
+                        <input style="max-width:30px;" min = "0" type="number" name="durasiMenit" value="<?php echo $old_durasi[2]; ?>" >&nbsp;Menit
+
+                    </td>
                     </td>
                 </tr>
                 
@@ -177,14 +233,17 @@
                         &nbsp; Lokasi
                     </td>
                     <td>
-                        <input id="errorLokasi" type="text" name="lokasi" placeholder="Masukkan lokasi">
+                        <input id="errorLokasi" type="text" name="lokasi" placeholder="Masukkan lokasi" value='<?php echo $old_lokasi ?>'>
                         <span class='wajib'>*</span>
                     </td>
                 </tr>
                 <tr>
+                <tr>
                     <td colspan=2>
-                        <input type="file" name="img" id="img" accept="image/*">
+                        <input type="file" name="img" id="img" value='<?php if ($old_gambar != 'pp') echo $old_gambar?>'>
                     </td>
+
+                </tr>
                 </tr>
                 <tr>
                     <!-- <td class = "go-back">
@@ -199,20 +258,22 @@
 
                     </td>
                     <td>
-                        <input type="submit" value="Kirim" name="submit">
+                        <input type="submit" value="update" name="submit">
                     </td>
+                    
 
                 </tr>
 
                 </table>
             </form>
-                <!-- <table class="kegiatan">
+                <table class="kegiatan" style="display:<?php if ($old_gambar == 'pp') {$old_gambar='upload/pp.png';echo 'none';}?>;">
                     <tr>
                         <td>
-                            <img class ="gambar-kakom" src="../gambar/didaktos.png" alt="">
+                            <img id = "gambar-kakom" class ="gambar-kakom" src="<?php echo $old_gambar?>" alt="">
+                            
                         </td>
                     </tr>
-                </table> -->
+                </table>
             
         </div>
     </main>
@@ -242,9 +303,8 @@
             }
             return isValid;
         }
+
     </script>
-
-
 
 
 </body>

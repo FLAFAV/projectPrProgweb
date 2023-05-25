@@ -53,7 +53,7 @@ header div {
 }
 
 .kegiatan td:nth-child(even){
-    opacity: .5;
+    opacity: 1;
     text-align: center;
 }
 

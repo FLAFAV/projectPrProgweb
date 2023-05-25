@@ -11,11 +11,13 @@ body{
 .kalender{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: #f5e3ec;
+    /* opacity: 0.65; */
     font-weight: bolder;
     border-radius: 5%;
     padding: 10px 30px;
     width: 30vw;
     border-spacing: 0px;
+    /* color:white */
 }
 .kalender .hari-hari th{
     background-color: #e090df;
@@ -39,9 +41,10 @@ header div {
 }
 
 .kalender td{
+    
     text-align: center;
     height: 8vh;
-    /* opacity: .75; */
+    opacity: 1;
     min-width: 3.5vw;
 }
 .kegiatan td {
@@ -70,6 +73,7 @@ header div {
 .now {
     border-radius: 100%;
     background-color: #FBBEDE;
+    /* background-color: black; */
 
 }
 
@@ -114,6 +118,7 @@ footer span {
 .kegiatan {
     text-align: center;
     height: auto;
+    /* max-height: 1px; */
 }
 .dropdown-container {
     position: absolute;
@@ -137,7 +142,7 @@ footer span {
     border-radius: 10%;
 
 }
-.hariBiasa:hover .dropdown-container{
+.hariBiasa:hover .dropdown-container {
     height: auto;
     width: auto;
     padding: 10px;

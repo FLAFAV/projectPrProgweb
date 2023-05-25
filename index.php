@@ -120,7 +120,7 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <!-- <tr class="hari">
+                <tr class="hari">
                     <td colspan="7">
                         <div class="ngisor-dewe">
                             <div class="level-1"></div>
@@ -131,7 +131,7 @@
                             <span class="penting">Penting</span>
                         </div>
                     </td>
-                </tr> -->
+                </tr>
 
             </table>
 
@@ -145,6 +145,7 @@
     <?php
     ?>
     <script>
+        
         isiTanggal(date.getFullYear(), date.getMonth()+1, <?php echo getKegiatan(date("Y"), date("m"));?>);
         apalah = getBulan();
         document.cookie = "bulan="+apalah;

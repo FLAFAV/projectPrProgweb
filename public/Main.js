@@ -44,7 +44,13 @@ function kasihOverLine(kegiatan) {
             tanggal = document.getElementById(tgl);
             // tanggal.innerHTML = tanggal.id;
             // alert(tgl);
-            if (!tanggal.innerHTML.includes("<span class=\"ada-tugas\">")) {
+            if (!isNaN(Number(tanggal.innerHTML))) {
+                tanggal.innerHTML = 
+                "<span class='ada-tugas'>" + tanggal.id +"</span>"+
+                "<div class='dropdown-container'><span class = 'kegiatan'>Kegiatan</span>"+ 
+                "<a class='dropdown keg " + kegiatan[i][j]['level'] +"'" +" href= " +path+ "  >" + kegiatan[i][j]['nama']+"</a></div>";
+            }
+            else if (!tanggal.innerHTML.includes("<span class=\"ada-tugas\">")) {
                 tanggal.innerHTML = 
                 "<span class='ada-tugas'>" + tanggal.id +"</span>"+
                 "<div class='dropdown-container'><span class = 'kegiatan'>Kegiatan</span>"+ 
@@ -82,7 +88,7 @@ function isiTanggal(tahun,bulan, kegiatan=[]){
 
     let now = new Date() 
     today = now.getDate()
-
+    sudahLewatNow = false;
     baris = 6
     kolom = 7
     hari = 1
@@ -99,22 +105,33 @@ function isiTanggal(tahun,bulan, kegiatan=[]){
                 var tanggal = tahun + "-" + bulan + "-" + hari;
                 // console.log(tanggal);
                 HARI_HARI[i].children[j].id = hari;
-                HARI_HARI[i].children[j].innerHTML = hari +       
-                "<div class='dropdown-container'><span class = 'kegiatan'>Kegiatan</span>"+ 
-                "<a style='background-color:white;' class='dropdown keg '  href='../../projectPrProgweb/kegiatan/insert.php?tgl="+ tanggal+"'> Tambah+ </a><br>";
+                if (new Date(now.getFullYear(), now.getMonth(), now.getDate()) < new Date(tahun, bulan-1, hari)) {
+                    HARI_HARI[i].children[j].innerHTML = hari +       
+                    "<div class='dropdown-container'><span class = 'kegiatan'>Kegiatan</span>"+ 
+                    "<a style='background-color:white;' class='dropdown keg '  href='../../projectPrProgweb/kegiatan/insert.php?tgl="+ tanggal+"'> Tambah+ </a><br>";
+                }
+                else {
+                    HARI_HARI[i].children[j].innerHTML = hari;
+                }
                 HARI_HARI[i].children[j].className = "hariBiasa";
 
                 
-
-                if (hari == today && now.getMonth() == bulan-1 && now.getFullYear() == tahun) 
+                // hari == today && now.getMonth() == bulan-1 && now.getFullYear() == tahun
+                if (hari == today && now.getMonth() == bulan-1 && now.getFullYear() == tahun) {
+                    console.log(new Date(tahun, bulan-1, hari));
                     HARI_HARI[i].children[j].className = "now";
+                    sudahLewatNow = true;
+                    HARI_HARI[i].children[j].innerHTML = hari +       
+                    "<div class='dropdown-container'><span class = 'kegiatan'>Kegiatan</span>"+ 
+                    "<a style='background-color:white;' class='dropdown keg '  href='../../projectPrProgweb/kegiatan/insert.php?tgl="+ tanggal+"'> Tambah+ </a><br>";
+                }
                 hari++;
             }
         
            
             else {
                 HARI_HARI[i].children[j].innerHTML = hari - jumlahHari;
-                HARI_HARI[i].children[j].className = "sisa";
+                HARI_HARI[i].children[j].className = "sisa dropdown";
                 hari ++;
             }
         }
