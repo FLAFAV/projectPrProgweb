@@ -1,9 +1,11 @@
 <?php
+    session_start();
+    require_once "../LoginKoneksi.php";
     $HOST = "localhost";
     $PASSWORD = "";
     $USER = "root";
     $DB = "kalender";
-    
+    $pengguna = $_SESSION['username'];
     $conn = mysqli_connect($HOST, $USER, $PASSWORD, $DB);
     if (!$conn->get_connection_stats())
         die("Failed");
@@ -25,7 +27,7 @@
         "11"=>"NOVEMBER",
         "12"=>"DESEMBER"
     );
-    $sql = "SELECT * FROM kegiatan WHERE id = " . $_GET['id'];
+    $sql = "SELECT * FROM kegiatan WHERE id = " . $_GET['id'] . " AND username =" . "'".$pengguna."'";
     $tgl = explode("-", $_GET['tgl']);
     $hari = $tgl[2];
     $bulan = $tgl[1];
@@ -41,6 +43,7 @@
     $old_durasi;
     $old_lokasi;
     $old_gambar;
+
     $result = mysqli_query($conn, $sql);
     while($row = mysqli_fetch_assoc($result)) {
         $old_nama = $row['nama'];
@@ -51,6 +54,7 @@
         $old_level = $row['level'];
         $old_gambar = $row['gambar'];
     }
+
     $NAMA_BULAN = array(
         "01"=> "JANUARI",
         "02"=>"FEBRUARI",
@@ -71,6 +75,9 @@
     if (strlen($bulan) == 1) {
         $bulan = "0" . $bulan;
     }
+    if (strlen($hari) == 1) {
+        $hari = "0" . $hari;
+    }
     $bulan = $NAMA_BULAN[$bulan];
     $tahun = $tgl[0];
 
@@ -90,7 +97,7 @@
             level='$level',
             durasi='$durasi',
             lokasi='$lokasi'
-            WHERE id =$id"
+            WHERE id =$id AND username = '$pengguna'"
             ;
             mysqli_query($conn, $sql);
 
@@ -107,7 +114,7 @@
                 durasi='$durasi',
                 lokasi='$lokasi',
                 gambar='$uploadfile'
-                WHERE id =$id"
+                WHERE id =$id AND username = '$pengguna'"
                 ;
                 mysqli_query($conn, $sql);
     
@@ -148,9 +155,15 @@
 </style>
 <body>
     <header>
-        <div class = "judul">
-            Kegiatan
-        </div>
+        <nav>
+            <div class="brand">
+                Kalender
+            </div>
+            <ul>
+                <li><a href="">Hello, <?php echo $_SESSION['username'];?></a></li>
+                <li><a href="">Log Out</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
         <div class ="container">

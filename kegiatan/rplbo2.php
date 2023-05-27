@@ -1,5 +1,7 @@
 <?php 
     require_once "../Connection.php";
+    require_once "../LoginKoneksi.php";
+    $pengguna = $_SESSION['username'];
     if (isset($_GET['id']) && isset($_GET['tgl'])){
         $informasiKegiatan = getInformasi($_GET['id']);
         $NAMA_BULAN = array(
@@ -16,7 +18,7 @@
             "11"=>"NOVEMBER",
             "12"=>"DESEMBER"
         );
-        $sql = "SELECT * FROM kegiatan WHERE id = " . $_GET['id'];
+        $sql = "SELECT * FROM kegiatan WHERE id = " . $_GET['id'] ." AND username = '$pengguna'";
         $result = mysqli_query($conn, $sql);
         $gambar = mysqli_fetch_assoc($result)['gambar'];
         // $d = strtotime($informasiKegiatan[0]["tglMulai"]);
@@ -60,9 +62,15 @@
 </head>
 <body>
     <header>
-        <div class = "judul">
-            Kegiatan
-        </div>
+        <nav>
+            <div class="brand">
+                Kalender
+            </div>
+            <ul>
+                <li><a href="">Hello, <?php echo $_SESSION['username'];?></a></li>
+                <li><a href="">Log Out</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
 

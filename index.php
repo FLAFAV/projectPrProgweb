@@ -2,23 +2,8 @@
 <?php 
     require_once "Connection.php";
 
-    function getBulanTahunNow($i, $choice) {
-        $bulan = $GLOBALS['bulan'];
-        $tahun = $GLOBALS['tahun'];
-        $bulan += $i;
-        if ($bulan == 13) {
-            $bulan = 1;
-            $tahun ++;
-        }
-        if ($bulan == 0) {
-            $bulan == 12;
-            $tahun --;
-        }
-        $GLOBALS['bulan'] = $bulan;
-        $GLOBALS['tahun'] = $tahun;
-        if ($choice == "b") {return $GLOBALS['bulan'];}
-        elseif ($choice == "y") {return $GLOBALS['tahun'] ;}
-
+    if (!isset($_SESSION['username'])) {
+        header("location:login.php");
     }
 
 ?>
@@ -37,11 +22,18 @@
     
 
     <header>
-        <div>
-            Kalender
-        </div>
+        <nav>
+            <div class="brand">
+                Kalender
+            </div>
+            <ul>
+                <li>Hello, <?php echo $_SESSION['username'];?></li>
+                <li><a href="logout.php">Log Out</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
+
         <div class ="container">
             <table class ="kalender">
                 <tr>
@@ -148,7 +140,7 @@
         
         isiTanggal(date.getFullYear(), date.getMonth()+1, <?php echo getKegiatan(date("Y"), date("m"));?>);
         apalah = getBulan();
-        document.cookie = "bulan="+apalah;
+
     </script>
 
 </body>

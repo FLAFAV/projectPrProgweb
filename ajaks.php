@@ -1,21 +1,22 @@
 
 <?php
-    
+    session_start();
     $HOST = "localhost";
     $PASSWORD = "";
     $USER = "root";
     $DB = "kalender";
-    
+    $username = $_SESSION['username'];
     $conn = mysqli_connect($HOST, $USER, $PASSWORD, $DB);
     if (!$conn->get_connection_stats())
         die("Failed");
 
     function getKegiatan($tahun, $bulan) {
+        $username = $GLOBALS['username'];
         $jumlahHari = cal_days_in_month(CAL_GREGORIAN,$bulan, $tahun);
         $arrayResult=[];
         $conn=$GLOBALS['conn'];
         for ($i = 1; $i < $jumlahHari +1; $i++) {
-            $query = "SELECT * FROM (select *,'$tahun-$bulan-$i' as bulan from kegiatan) as g where bulan BETWEEN tglMulai and tglSelesai;";
+            $query = "SELECT * FROM (select *,'$tahun-$bulan-$i' as bulan from kegiatan where username = '$username') as g where (bulan BETWEEN tglMulai and tglSelesai)";
             $result = mysqli_query($conn, $query);
             $array = [];
             $uniqueID = [];
@@ -37,12 +38,12 @@
     }
 
     function getInformasi($id) {
-
+        $username = $GLOBALS['username'];
         $conn = $GLOBALS['conn'];
         $sql = "SELECT id, nama, level, DATE(tglSelesai) as tglSelesai, DATE(tglMulai) as tglMulai,
         level, 
         YEAR(tglMulai) as tahunMulai,
-        MONTH(tglMulai) as bulanMulai, durasi, lokasi, gambar FROM kegiatan WHERE id = $id";
+        MONTH(tglMulai) as bulanMulai, durasi, lokasi, gambar FROM kegiatan WHERE id = $id AND username = '$username'";
         $result = mysqli_query($conn, $sql);
         $arrayResult = [];
         while (($row = mysqli_fetch_assoc($result))) {

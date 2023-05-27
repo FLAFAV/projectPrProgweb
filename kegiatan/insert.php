@@ -1,4 +1,8 @@
 <?php
+    session_start();
+    require_once "../LoginKoneksi.php";
+
+    $pengguna = $_SESSION['username'];
     $HOST = "localhost";
     $PASSWORD = "";
     $USER = "root";
@@ -31,6 +35,9 @@
     if (strlen($bulan) == 1) {
         $bulan = "0" . $bulan;
     }
+    if (strlen($hari) == 1) {
+        $hari = "0" . $hari;
+    }
     $bulan = $NAMA_BULAN[$bulan];
     $tahun = $tgl[0];
 
@@ -43,20 +50,24 @@
         $lokasi = $_POST['lokasi'];
         if (($_FILES['img']['name'] == ''))
         {
-            $sql = "INSERT INTO `kegiatan` (`id`, `nama`, `tglMulai`, `tglSelesai`, `level`, `durasi`, `lokasi`, `gambar`) VALUES (NULL, '$nama', '$tglMulai', '$tglSelesai', '$level', '$durasi', '$lokasi', 'pp')";
+            $sql = "INSERT INTO `kegiatan` (`id`, `nama`, `tglMulai`, `tglSelesai`, `level`, `durasi`, `lokasi`, `gambar`, `username`) VALUES (NULL, '$nama', '$tglMulai', '$tglSelesai', '$level', '$durasi', '$lokasi', 'pp', '$pengguna')";
             mysqli_query($conn, $sql);
-            header("location:../index.php");
+            $sql = "SELECT * FROM `kegiatan` WHERE username = '$pengguna' ORDER BY `kegiatan`.`id` DESC limit 1";
+            $result = mysqli_query($conn, $sql);
+            $id=mysqli_fetch_assoc($result)['id'];
+            // header("location:../kegiatan/rplbo2.php?id=".$id."&tgl=".$_GET['tgl']);
+            header("location:../kegiatan/rplbo2.php?id=".$id."&tgl=".$_GET['tgl']);
         }
         else {
             $extension = pathinfo($_FILES['img']['name'])['extension'];
-            $uploadfile = "upload/" . time() . ".".$extension;
+            $uploadfile = "upload/" . time() . "id".$id.".".$extension;
             $filetype = explode('/', $_FILES['img']['type'])[0];
             var_dump($_FILES['img']['type']);
             if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile) && $filetype=='image') {
 
-                $sql = "INSERT INTO `kegiatan` (`id`, `nama`, `tglMulai`, `tglSelesai`, `level`, `durasi`, `lokasi`, `gambar`) VALUES (NULL, '$nama', '$tglMulai', '$tglSelesai', '$level', '$durasi', '$lokasi', '$uploadfile')";
+                $sql = "INSERT INTO `kegiatan` (`id`, `nama`, `tglMulai`, `tglSelesai`, `level`, `durasi`, `lokasi`, `gambar`, `username`) VALUES (NULL, '$nama', '$tglMulai', '$tglSelesai', '$level', '$durasi', '$lokasi', '$uploadfile', '$pengguna')";
                 mysqli_query($conn, $sql);
-                $sql = "SELECT * FROM `kegiatan` ORDER BY `kegiatan`.`id` DESC limit 1";
+                $sql = "SELECT * FROM `kegiatan` WHERE username = '$pengguna' ORDER BY `kegiatan`.`id` DESC limit 1";
                 $result = mysqli_query($conn, $sql);
                 $id=mysqli_fetch_assoc($result)['id'];
                 header("location:../kegiatan/rplbo2.php?id=".$id."&tgl=".$_GET['tgl']);
@@ -95,9 +106,15 @@
 </style>
 <body>
     <header>
-        <div class = "judul">
-            Kegiatan
-        </div>
+        <nav>
+            <div class="brand">
+                Kalender
+            </div>
+            <ul>
+                <li><a href="">Hello, <?php echo $_SESSION['username'];?></a></li>
+                <li><a href="">Log Out</a></li>
+            </ul>
+        </nav>
     </header>
     <main>
         <div class ="container">
@@ -148,7 +165,7 @@
                     <td>
                         <input id = "selesai" type="date" name="selesai">
                         <script>
-                                document.getElementById("mulai").addEventListener('change', function () {
+                            document.getElementById("mulai").addEventListener('change', function () {
                                 document.getElementById("selesai").min = document.getElementById("mulai").innerHTML.trim();
                                 if (document.getElementById("selesai").value < document.getElementById("mulai").innerHTML.trim()){
                                     document.getElementById("selesai").value = document.getElementById("mulai").innerHTML.trim();

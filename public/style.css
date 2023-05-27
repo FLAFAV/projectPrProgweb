@@ -24,17 +24,41 @@ body{
     min-width: 3.5vw;
     
 }
-header div {
+header {
+    position: sticky;
+    top: 0;
+}
+header nav {
+    position: sticky;
+    top: 0;
     display: flex;
+    width: 100%;
     align-items:center;
-    justify-content: center;
+    justify-content: space-between;
     /* background-color: #23242a; */
-    font-size: 48px;
     font-weight: bolder;
     color: whitesmoke;
-    margin-top: 5vh;
     margin-bottom: 5vh;
 }
+header > nav > .brand {
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 3%;
+    font-size: 48px;
+}
+header > nav > ul {
+    margin-right: 3% ;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+header > nav > ul > li {
+    padding: 15px;
+}
+header > nav > ul > li a:link , header > nav > ul > li a:visited {
+    color: white;
+} 
+    
+
 
 .kalender:nth-child(2) {
     margin-left: 20px;
@@ -142,7 +166,7 @@ footer span {
     border-radius: 10%;
 
 }
-.hariBiasa:hover .dropdown-container {
+.hariBiasa:hover .dropdown-container, .now:hover .dropdown-container {
     height: auto;
     width: auto;
     padding: 10px;
@@ -198,5 +222,9 @@ a.kurang:link, a.kurang:visited {
 
 #next, #prev {
     cursor: pointer;
+}
+
+.loginAs {
+    font-size: 12pt;
 }
 

@@ -1,5 +1,6 @@
 <?php
-    setcookie("bulan", "halo");
+    session_start();
+    $username = $_SESSION['username'];
     $HOST = "localhost";
     $PASSWORD = "";
     $USER = "root";
@@ -10,11 +11,12 @@
         die("Failed");
 
     function getKegiatan($tahun, $bulan) {
+        $username = $GLOBALS['username'];
         $jumlahHari = cal_days_in_month(CAL_GREGORIAN,$bulan, $tahun);
         $arrayResult=[];
         $conn=$GLOBALS['conn'];
         for ($i = 1; $i < $jumlahHari +1; $i++) {
-            $query = "SELECT * FROM (select *,'$tahun-$bulan-$i' as bulan from kegiatan) as g where bulan BETWEEN tglMulai and tglSelesai;";
+            $query = "SELECT * FROM (select *,'$tahun-$bulan-$i' as bulan from kegiatan where username = '$username') as g where bulan BETWEEN tglMulai and tglSelesai;";
             $result = mysqli_query($conn, $query);
             $array = [];
             $uniqueID = [];
