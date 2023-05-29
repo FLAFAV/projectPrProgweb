@@ -1,5 +1,6 @@
 body{
-    background-image: url("./gambar/img.gif");
+    background-image: url("../gambar/pixel6.gif");
+    /* background-image: url("./gambar/lofi.gif"); */
     background-size: cover;
     padding: 0;
     margin: 0;
@@ -10,17 +11,17 @@ body{
 }
 .kalender{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: #f5e3ec;
-    /* opacity: 0.65; */
+    background-color: rgba(245,227,236, 0.4);
+
     font-weight: bolder;
     border-radius: 5%;
     padding: 10px 30px;
     width: 30vw;
     border-spacing: 0px;
-    /* color:white */
+    color:black
 }
 .kalender .hari-hari th{
-    background-color: #e090df;
+    /* background-color: #e090df; */
     min-width: 3.5vw;
     
 }
@@ -37,7 +38,7 @@ header nav {
     justify-content: space-between;
     /* background-color: #23242a; */
     font-weight: bolder;
-    color: whitesmoke;
+    /* color: whitesmoke; */
     margin-bottom: 5vh;
 }
 header > nav > .brand {
@@ -95,8 +96,10 @@ header > nav > ul > li a:link , header > nav > ul > li a:visited {
     opacity: .2;
 }
 .now {
+    color: white;
     border-radius: 100%;
-    background-color: #FBBEDE;
+    background-color: black;
+    /* background-color: RGBA(169, 169, 169, 0.9); */
     /* background-color: black; */
 
 }
@@ -163,6 +166,7 @@ footer span {
     padding: 10px;
     display: block;
     background-color:#f8d5e7;
+    background-color:rgba(169, 169, 169, 0.9);
     border-radius: 10%;
 
 }
@@ -172,6 +176,7 @@ footer span {
     padding: 10px;
     display: block;
     background-color:#f8d5e7;
+    background-color:rgba(169, 169, 169, 0.9);
     border-radius: 10%;
 
 }

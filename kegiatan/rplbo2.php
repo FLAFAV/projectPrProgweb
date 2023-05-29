@@ -68,7 +68,7 @@
             </div>
             <ul>
                 <li><a href="">Hello, <?php echo $_SESSION['username'];?></a></li>
-                <li><a href="">Log Out</a></li>
+                <li><a href="../logout.php">Log Out</a></li>
             </ul>
         </nav>
     </header>
@@ -170,9 +170,9 @@
         tglSelesai = new Date('<?php echo date($informasiKegiatan[0]["tglSelesai"])?>');
         now = new Date();
         if (tglSelesai < new Date(now.getFullYear(), now.getMonth(), now.getDate())){
-            // button.disabled = true;
+            button.disabled = true;
             button2.disabled = true;
-            // button.title = "Tanggal sudah lewat, tidak bisa update";
+            button.title = "Tanggal sudah lewat, tidak bisa update";
             button2.title = "Tanggal sudah lewat, tidak bisa delete";
         }
 

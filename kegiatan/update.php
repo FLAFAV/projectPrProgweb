@@ -161,7 +161,7 @@
             </div>
             <ul>
                 <li><a href="">Hello, <?php echo $_SESSION['username'];?></a></li>
-                <li><a href="">Log Out</a></li>
+                <li><a href="../logout.php">Log Out</a></li>
             </ul>
         </nav>
     </header>

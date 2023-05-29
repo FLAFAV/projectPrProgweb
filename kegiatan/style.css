@@ -1,5 +1,6 @@
 body{
-    background-image: url("../gambar/img.gif");
+    background-image: url("../gambar/pixel6.gif");
+    /* background-image: url("../gambar/lofi.gif"); */
     background-size: cover;
     margin:0;
     padding: 0;
@@ -10,7 +11,7 @@ body{
 }
 .kegiatan {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: #f5e3ec;
+    background-color: rgba(245,227,236, 0.4);
     font-weight: bolder;
     border-radius: 5%;
     padding: 10px 30px;
@@ -23,7 +24,8 @@ body{
 }
 
 .kegiatan .hari-hari th{
-    background-color: #e090df;
+    background-color: rgba(169, 169, 169, 0.9);;
+    
 }
 
 header {
@@ -91,6 +93,7 @@ header > nav > ul > li a:link , header > nav > ul > li a:visited {
 .now {
     border-radius: 100%;
     background-color: #e090df; 
+    background-color: rgba(169, 169, 169, 0.9); 
     opacity: 0;
 }
 
