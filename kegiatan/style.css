@@ -1,5 +1,5 @@
 body{
-    background-image: url("../gambar/pixel6.gif");
+    background-image: url("../gambar/pixel10.gif");
     /* background-image: url("../gambar/lofi.gif"); */
     background-size: cover;
     margin:0;
@@ -10,7 +10,7 @@ body{
     justify-content: center;
 }
 .kegiatan {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: rgba(245,227,236, 0.4);
     font-weight: bolder;
     border-radius: 5%;
@@ -41,12 +41,14 @@ header nav {
     justify-content: space-between;
     /* background-color: #23242a; */
     font-weight: bolder;
-    color: whitesmoke;
-    /* background-color: black; */
+    /* color: whitesmoke; */
     margin-bottom: 5vh;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 header > nav > .brand {
-    font-family: 'Courier New', Courier, monospace;
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:black;
     margin-left: 3%;
     font-size: 48px;
 }
@@ -58,9 +60,11 @@ header > nav > ul {
 }
 header > nav > ul > li {
     padding: 15px;
+    color: black;
 }
 header > nav > ul > li a:link , header > nav > ul > li a:visited {
-    color: white;
+    color: black;
+
 } 
 .simbol-penting {
     width: 10%;

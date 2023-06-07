@@ -5,7 +5,7 @@ html {
     margin:0;
     padding:0;
     font-family: sans-serif;
-    background: linear-gradient(#9DB2BF, #27374D);
+    background: linear-gradient(white, grey, black);
   }
   
   .login-box {
@@ -58,7 +58,7 @@ html {
   .login-box .user-box input:valid ~ label {
     top: -20px;
     left: 0;
-    color: #f68e44;
+    color: #C07F00;
     font-size: 12px;
   }
   

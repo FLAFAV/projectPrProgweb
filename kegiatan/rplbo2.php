@@ -160,10 +160,10 @@
 
         </div>
     </main>
-    <footer>
+    <!-- <footer>
         <img class="ukdw" src="../gambar/33.UKDW.png" alt="">
         <span>&nbsp &#169; Dipundamel dening Bobi, Gian, Yandi :v</span>
-    </footer>
+    </footer> -->
     <script>
         button = document.getElementById("updateButton");
         button2 =document.getElementById("deleteButton");
