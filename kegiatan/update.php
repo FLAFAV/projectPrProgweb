@@ -81,7 +81,7 @@
     $bulan = $NAMA_BULAN[$bulan];
     $tahun = $tgl[0];
 
-    if (isset($_POST['submit'])) {
+    if (isset($_POST['submit']) || isset($_POST['submitDel'])) {
         $nama = $_POST['nama'];
         $tglMulai = $_POST['mulai'];
         $tglSelesai = $_POST['selesai'];
@@ -89,17 +89,20 @@
         $durasi = $_POST['durasiJam'] . " jam " . $_POST['durasiMenit']." menit";
         $lokasi = $_POST['lokasi'];
         $sql = "INSERT INTO `kegiatan` (`id`, `nama`, `tglMulai`, `tglSelesai`, `level`, `durasi`, `lokasi`, `gambar`) VALUES (NULL, '$nama', '$tglMulai', '$tglSelesai', '$level', '$durasi', '$lokasi', 'pp')";
+
         if (($_FILES['img']['name'] == '')) 
         {
-            $sql = "UPDATE `kegiatan` SET nama = '$nama',
-            tglMulai='$tglMulai',
-            tglSelesai='$tglSelesai',
-            level='$level',
-            durasi='$durasi',
-            lokasi='$lokasi'
-            WHERE id =$id AND username = '$pengguna'"
-            ;
-            mysqli_query($conn, $sql);
+            
+                $sql = "UPDATE `kegiatan` SET nama = '$nama',
+                tglMulai='$tglMulai',
+                tglSelesai='$tglSelesai',
+                level='$level',
+                durasi='$durasi',
+                lokasi='$lokasi'
+                WHERE id =$id AND username = '$pengguna'"
+                ;
+                mysqli_query($conn, $sql);
+            
 
         }
         else {
@@ -279,12 +282,19 @@
 
                 </table>
             </form>
-                <table class="kegiatan" style="display:<?php if ($old_gambar == 'pp') {$old_gambar='upload/pp.png';echo 'none';}?>;">
+                <table id="mauDihapus" class="kegiatan" style="display:<?php if ($old_gambar == 'pp') {$old_gambar='upload/pp.png';echo 'none';}?>;">
+                    <form action="del.php?id= <?php echo $_GET['id'] . "&tgl=" . $_GET['tgl']?>" method="POST" >
+                        <tr>
+                                <td>
+                                    <input type="submit" name = "submitDel" value="x" id="hapusGambar">
+                                </td>
+                        </tr>
+                    </form>
                     <tr>
                         <td>
                             <img id = "gambar-kakom" class ="gambar-kakom" src="<?php echo $old_gambar?>" alt="">
-                            
                         </td>
+                        
                     </tr>
                 </table>
             
@@ -317,6 +327,9 @@
             return isValid;
         }
 
+        document.getElementById("hapusGambar").addEventListener('click', function () {
+            document.getElementById("mauDihapus").style['display'] = "none";
+        });
     </script>
 
 
