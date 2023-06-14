@@ -29,35 +29,21 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Login</title>
-  <!-- Required meta tags -->
+  <title>login</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="loginYandi.css?v=<?php echo time()?>" rel="stylesheet">
+  <link href="loginYandi.css?v=<?php echo time() ?>" rel="stylesheet">
 </head>
 <body>
   <div class="login-box">
-    <h2>Login</h2>
-    <form method="POST">
-      <div class="user-box">
-        <input type="text" name="username" required>
-        <label>Username</label>
+      <div class="form">
+        <form class="login-form" method="POST">
+          <input type="text" name="username" placeholder="꧋ꦤꦩ" required/>
+          <input type="password" name = "password" placeholder="꧋ꦥꦱ꧀ꦱ꧀ꦮꦺꦴꦂꦣ꧀"/>
+          <input class = "button" type="submit" name = "submit" value="꧋ꦩꦱꦸꦏ꧀ꦩꦱ꧀" required>
+          <!-- <button>꧋ꦩꦱꦸꦏ꧀ꦩꦱ꧀</button> -->
+        </form>
       </div>
-      <div class="user-box">
-        <input type="password" name="password" required>
-        <label>Password</label>
-      </div>
-      <input type="submit" value="submit" name = "submit" id="submit" style="display:none;">
-
-        <a href="#">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <label for="submit">Submit</label>
-        </a>
-
-    </form>
   </div>
 </body>
 </html>
