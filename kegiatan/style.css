@@ -2,6 +2,7 @@ body{
     background-image: url("../gambar/pixel10.gif");
     /* background-image: url("../gambar/lofi.gif"); */
     background-size: cover;
+    height: 100vh;
     margin:0;
     padding: 0;
     -webkit-background-size: cover;

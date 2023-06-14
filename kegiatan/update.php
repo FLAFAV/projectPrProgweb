@@ -256,7 +256,7 @@
                 <tr>
                 <tr>
                     <td colspan=2>
-                        <input type="file" name="img" id="img" value='<?php if ($old_gambar != 'pp') echo $old_gambar?>'>
+                        <input type="file" name="img" accept="image/*" id="img" value='<?php if ($old_gambar != 'pp') echo $old_gambar?>'>
                     </td>
 
                 </tr>
