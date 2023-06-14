@@ -189,12 +189,15 @@
                         &nbsp; Level Penting 
                     </td>
                     <td>
-                        <select name="level" id="" value='<?php echo $old_level ?>'>
-                            <option value="kurang">kurang</option>
-                            <option value="sedang">sedang</option>
-                            <option value="penting">penting</option>
+                        <select name="level" value='<?php echo $old_level ?>'>
+                            <option id="comboboxkurang" value="kurang">kurang</option>
+                            <option id="comboboxsedang" value="sedang">sedang</option>
+                            <option id="comboboxpenting" value="penting">penting</option>
                         </select>
-
+                        <script>
+                            old_level = "<?php echo $old_level ?>";
+                            document.getElementById("combobox"+old_level).selected = "selected";
+                        </script>
                     </td>
                 </tr>
                 <tr>
