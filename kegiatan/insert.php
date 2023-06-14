@@ -112,7 +112,7 @@
                 Kalender
             </div>
             <ul>
-                <li><a href="">Hello, <?php echo $_SESSION['username'];?></a></li>
+                <li>Hello, <?php echo $_SESSION['username'];?></li>
                 <li><a href="../logout.php">Log Out</a></li>
             </ul>
         </nav>

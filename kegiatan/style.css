@@ -1,5 +1,5 @@
 body{
-    background-image: url("../gambar/pixel10.gif");
+    background: url("../gambar/pixel10.gif") no-repeat center center fixed;
     /* background-image: url("../gambar/lofi.gif"); */
     background-size: cover;
     height: 100vh;
