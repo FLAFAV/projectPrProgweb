@@ -180,8 +180,8 @@ footer span {
     width: auto;
     padding: 10px;
     display: block;
-    background-color:#f8d5e7;
-    background-color:rgba(169, 169, 169, 0.9);
+    /* background-color:#f8d5e7;
+    background-color:rgba(169, 169, 169, 0); */
     border-radius: 10%;
 
 }
@@ -190,10 +190,10 @@ footer span {
     width: auto;
     padding: 10px;
     display: block;
-    background-color:#f8d5e7;
-    background-color:rgba(169, 169, 169, 0.9);
+    /* background-color:#f8d5e7;
+    background-color:rgba(169, 169, 169, 0); */
     border-radius: 10%;
-
+    color: black;
 }
 
 
